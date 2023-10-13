@@ -1,8 +1,7 @@
 import axios from 'axios';
+axios.defaults.baseURL = 'https://books-backend.p.goit.global/books/';
 
 const list = document.querySelector('.js-list');
-
-axios.defaults.baseURL = 'https://books-backend.p.goit.global/books/';
 
 async function makeList() {
   const result = axios.get('top-books');
@@ -15,7 +14,7 @@ async function makeList() {
 function markup(val) {
   return val
     .map(element => {
-      return `<li class="li">${element}</li>`;
+      return `<li>${element}</li>`;
     })
     .join('');
 }
@@ -69,7 +68,7 @@ function markupTopFive(val) {
     .map(element => {
       return element.map(
         e => `<ul>
-               <li class="item" data-id="${e._id}"> 
+               <li data-id="${e._id}"> 
                  <img src="${e.book_image}" alt="">
                  <h1>${e.title}</h1>
                  <h2>${e.author}</h2>
@@ -83,14 +82,48 @@ function markupTopFive(val) {
 topFive();
 
 //---------------------------------------------------------------//
+const LS_KEY = 'book-inf';
 
-const picture = document.querySelector('.js-modal-picture');
-const modalInfo = document.querySelector('.js-modal-info');
-// const item = document.querySelector('.item');
-// const image = document.querySelector('#image1');
+const modal = document.querySelector('.modal');
+const picture = document.querySelector('.modal-picture');
+const modalInfo = document.querySelector('.modal-info');
 
-// const modalIcons = document.querySelector('.modal-icons');
-// console.log(modalIcons);
+
+
+listOfBookFromCategory.addEventListener('click', e => {
+  const touch = e.target.closest('li');
+  console.log(touch);
+  const touchId = touch.dataset.id;
+  console.log(touchId);
+
+  async function forModal() {
+    const result = axios.get(`${touchId}`);
+    const resultVal = await result.then(data => data.data);
+    const modalMake = makeModal(resultVal);
+    modal.innerHTML = modalMake;
+    // modalInfo.insertAdjacentHTML('afterbegin', makeModal);
+  }
+
+  forModal();
+});
+
+
+
+
+
+// ============================================================ //
+function makeModal(val) {
+  return `<h1>MODAL</h1>
+  <img src=${val.book_image}>
+  <h2>${val.title}</h2>
+  <h3>${val.author}</h3>
+  <h4>${val.contibutor}</h4>
+  <button type="button" class="js-add"> add </button>
+  `;
+}
+
+// const image = document.getElementById('image1');
+// console.log(image);
 // image.addEventListener('click', e => {
 //   // const touch = e.target.closest('h1');
 //   const previousElement = image.previousElementSibling;
@@ -109,88 +142,21 @@ const modalInfo = document.querySelector('.js-modal-info');
 //   forModal();
 // });
 
-const LS_KEY = 'book-inf';
-
-listOfBookFromCategory.addEventListener('click', e => {
-  const touch = e.target.closest('li');
-  const touchId = touch.dataset.id;
-  picture.innerHTML = '';
-  modalInfo.innerHTML = '';
-  async function forModal() {
-    const result = axios.get(`${touchId}`);
-    const resultVal = await result.then(data => data.data);
-    console.log(resultVal);
-    const modalMake = makeModal(resultVal);
-    return modalMake;
-  }
-
-  forModal();
-});
-
-// ============================================================ //
-// function makeModal(val) {
-//   return `<h1>MODAL</h1>
-//   <img src=${val.book_image}>
-//   <h2>${val.title}</h2>
-//   <h3>${val.author}</h3>
-//   <h4>${val.description}</h4>`;
+// function iconMarket({ amazon_product_url }) {
+//   `<a class="modal-link" href="${amazon_product_url}" target="_blank" rel="noopener noreferrer"></a>`;
 // }
-//  width="${book_image_width}" height="${book_image_height}"
-function makeModal({
-  author,
-  book_image,
-  book_image_width,
-  book_image_height,
-  description,
-  title,
-  amazon_product_url,
-  buy_links,
-}) {
-  const content = `<img class="modal-picture-content" src="${book_image}" alt="${title}" />`;
-  const text = `<h2 class= "modal-title">${title}</h2>
-        <h3 class="modal-author">${author}</h3>
-        <p class="modal-description">${description}</p>
-        <div class="modal-icons">
-            <a
-              href="${amazon_product_url}"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Amazon"
-            >
-              <img
-                src="./images/modal/amazon.png"
-                alt="Amazon"
-                width="62"
-                height="19"
-              />
+
+// function makeModal(val) {
+//   const qwerty = `<h1>${val.title}</h1>
+//         <h2>${val.author}</h2>
+//         <p data-id="${val.id}>${val.description}</p>`;
+//   const asdfg = `<h1>Modal</h1><img src="${val.book_image}" alt="${title}" width="${val.book_image_width}" height="${val.book_image_height}"></img>`;
       
-            </a>
-          
-            <a
-              href="${buy_links[1].url}"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Book"
-              ><img
-                src="./images/modal/book.png"
-                alt="Book"
-                width="33"
-                height="32"
-            /></a>
-            </div>`;
-          
-       
-  picture.insertAdjacentHTML('beforeend', content);
-  modalInfo.insertAdjacentHTML('beforeend', text);
-}
+//   modalInfo.insertAdjacentHTML('afterbegin', qwerty);
+//   picture.insertAdjacentHTML('beforeend', asdfg);
+// }
 
-list.addEventListener('click', e => {
-  const nameOfCategory = e.target.textContent;
-  if (nameOfCategory === 'All categories') {
-    topFive();
-  }
-});
-
+// ({date, day : {avgtemp_c , condition : {icon, text}}})
 // try todo
 // async function forShopList() {
 
@@ -215,9 +181,6 @@ list.addEventListener('click', e => {
 
 //   console.log(LSproduct)
 // }
+const button = document.querySelector('.js-add');
 
-list.addEventListener('click', e => {
-  const nameOfCategory = e.target;
-  console.log(nameOfCategory);
-  nameOfCategory.classList.toggle('choosen-category');
-});
+// button.addEventListener('click', e => console.log(e));

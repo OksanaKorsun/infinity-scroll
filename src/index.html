@@ -4,11 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
+    <link rel="stylesheet" href="./css/style.css" />
     <script type="module" src="./index.js"></script>
   </head>
+
   <body>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <!-- <include src="./partials/example.html"></include> -->
+    <ul class="js-list">
+      <!-- <li>642fd89ac8cf5ee957f12361</li> -->
+    </ul>
+    <div class="listOfBookFromCategory"></div>
+
+    <div class="modal">
+      <button class="modal-close js-modal-close" type="button">
+        <svg class="modal-icon" width="12" height="12">
+          <use href="./images/icons.svg#icon-Icon"></use>
+        </svg>
+      </button>
+      <div class="modal-content">
+        <div class="js-modal-picture modal-picture"></div>
+        
+        <div class="js-modal-info modal-info"></div>
+      </div>
+      <button class="modal-btn js-modal-btn" type="button">ADD TO SHOPPING LIST</button>
+      <p class="modal-add"></p>
+    </div>
   </body>
 </html>
