@@ -1,3 +1,70 @@
+/* reset */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* root */
+:root {
+  /* Fonts */
+  --primary-font: DM Sans, sans-serif;
+  /* Text colors */
+  --main-tx-cl: #111111;
+  --light-tx-cl: #b4afaf;
+  --violet-tx-cl: #4f2ee8;
+  --white-tx-cl: #ffffff;
+
+  /* Bg colors */
+  --white-bg-cl: #ffffff;
+  --light-bg-cl: #f6f6f6;
+  --violet-bg-cl: #4f2ee8;
+  --orange-bg-cl: #eac645;
+  --black-bg-cl: #111111;
+  --dark-bg-cl: #202024;
+
+
+--anim-fast: 300ms ease-in;
+}
+
+body {
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
 .modal {
   box-sizing: border-box;
   border: 2px solid #111111;
@@ -13,82 +80,167 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 30; 
+  z-index: 30;
 }
 ::-webkit-scrollbar {
-    width: 0;
+  width: 0;
+}
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 579px;
+    padding: 40px 40px;
+  }
 }
 .modal-close {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 12px;
+  right: 12px;
   background-color: transparent;
   cursor: pointer;
   border: none;
 }
-/* @media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .modal-close {
-    width: 28px;
-    height: 28px;
+    top: 24px;
+    right: 24px;
   }
-} */
+}
 .modal-icon {
-    stroke: #111111;
+  width: 14px;
+  height: 14px;
+  stroke: var(--black-bg-cl);
   display: inline-block;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.modal-icon:active,
+.modal-icon:hover,
+.modal-icon:focus {
+    stroke: var(--violet-bg-cl);
+}
+/* @media only screen and (min-width: 768px) {
+  .modal-icon {
+  }
+} */
+/* .modal-field {
+  padding: 40px 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .modal-field {
+  }
+} */
 .modal-content {
   display: flex;
   flex-direction: column;
+  margin-bottom: 44px;
+}
+@media only screen and (min-width: 768px) {
+  .modal-content {
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 24px;
+    margin-bottom: 40px;
+  }
 }
 .modal-picture {
   border: none;
   padding: 0;
-  width: 285px;
-  height: 408px;
+  border-radius: 8px;
+  /* width: 285px;
+  height: 408px; */
   margin-bottom: 14px;
 }
+@media only screen and (min-width: 768px) {
+  .modal-picture {
+    margin-bottom: 0;
+  }
+}
+
 .modal-picture-content {
   border-radius: 8px;
-  padding: 0;
-  margin: 0;
-  object-fit: contain;
+  /* padding: 0;
+  margin: 0; */
+  /* object-fit: cover; */
   width: 285px;
   height: 408px;
 }
-.modal-info {
-  margin-bottom: 44px;
+@media only screen and (min-width: 768px) {
+  .modal-picture-content {
+    width: 192px;
+    height: 281px;
+  }
 }
 .modal-title {
-  font-size: 18px;
-  margin-bottom: 4px;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
+@media only screen and (min-width: 768px) {
+  .modal-title {
+    font-size: 24px;
+  }
+}
+
 .modal-author {
   font-style: italic;
   font-size: 12px;
-  color: #b4afaf;
+  color: var(--light-tx-cl);
+  font-weight: 100;
   margin-bottom: 14px;
   margin-top: 0;
 }
+@media only screen and (min-width: 768px) {
+  .modal-author {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}
 .modal-description {
-  font-size: 18px;
+  font-size: 14px;
+  width: 287px;
+  margin-bottom: 14px;
+}
+@media only screen and (min-width: 768px) {
+  .modal-description {
+    width: 279px;
+    margin-bottom: 20px;
+  }
 }
 .modal-icons {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 .modal-btn {
   height: 46px;
   display: block;
   margin: auto;
-  border: 2px solid #4f2ee8;
+  border: 2px solid var(--violet-bg-cl);
   border-radius: 40px;
   font-size: 14px;
   padding: 14px 28px;
   margin-bottom: 0;
+  background-color: var(--white-bg-cl);
+transition: color var(--anim-fast), background-color var(--anim-fast);
+}
+@media only screen and (min-width: 768px) {
+  .modal-btn {
+    height: 64px;
+    width: 100%;
+    font-size: 18px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+}
+.modal-btn:active,
+.modal-btn:hover,
+.modal-btn:focus {
+   background-color: var(--violet-bg-cl);
+   color: var(--white-tx-cl);
 }
