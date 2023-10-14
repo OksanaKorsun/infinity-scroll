@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { serviceModal } from './js/api-search';
 
 const list = document.querySelector('.js-list');
 
@@ -90,53 +91,37 @@ const modalInfo = document.querySelector('.js-modal-info');
 const overlay = document.querySelector('.js-overlay-modal');
 
 const closeBtn = document.querySelector('.js-modal-close');
-// const item = document.querySelector('.item');
-// const image = document.querySelector('#image1');
-
-// const modalIcons = document.querySelector('.modal-icons');
-// console.log(modalIcons);
-// image.addEventListener('click', e => {
-//   // const touch = e.target.closest('h1');
-//   const previousElement = image.previousElementSibling;
-//   console.log(previousElement);
-//   // const touchId = touch.dataset.id;
-//   // console.log(touchId);
-//   const touchId = previousElement.id;
-
-//   async function forModal() {
-//     const result = axios.get(`${touchId}`);
-//     const resultVal = await result.then(data => data.data);
-//     const modalMake = iconMarket(resultVal);
-//     modalInfo.innerHTML = iconMarket;
-//   }
-
-//   forModal();
-// });
-
 const LS_KEY = 'book-inf';
 
 listOfBookFromCategory.addEventListener('click', e => {
   const touch = e.target.closest('li');
   const touchId = touch.dataset.id;
+  // picture.innerHTML = '';
+  // modalInfo.innerHTML = '';
+  // async function forModal() {
+  //   const result = axios.get(`${touchId}`);
+  //   const resultVal = await result.then(data => data.data);
+  //   console.log(resultVal);
+  //   const modalMake = makeModal(resultVal);
+  //   modal.classList.add('active');
+  //   return modalMake;
+  // }
+  forModal(touchId);
+  // overlay.classList.add('active');
+  // document.body.style.overflow = 'hidden';
+});
+
+async function forModal(touchId) {
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
   picture.innerHTML = '';
   modalInfo.innerHTML = '';
-  async function forModal() {
-    // modal.style.display = 'block';
-    const result = axios.get(`${touchId}`);
-    const resultVal = await result.then(data => data.data);
-    console.log(resultVal);
-    const modalMake = makeModal(resultVal);
-    modal.classList.add('active');
-    return modalMake;
-  }
-  forModal();
-  // enableScrollLock();
-  overlay.classList.add('active');
-  document.body.style.overflow = "hidden";
-//   window.addEventListener('scroll', (e) => {
-//   window.scrollTo(0,0);
-// });
-});
+  const result = await serviceModal(touchId);
+  console.log(result);
+  const modalMake = makeModal(result);
+  modal.classList.add('active');
+  return modalMake;
+}
 
 // ============================================================ //
 // function makeModal(val) {
@@ -201,12 +186,11 @@ list.addEventListener('click', e => {
   }
 });
 
-
 closeBtn.addEventListener('click', () => {
   modal.classList.remove('active');
   overlay.classList.remove('active');
-  document.body.style.overflow = ""; 
-})
+  document.body.style.overflow = '';
+});
 // try todo
 // async function forShopList() {
 
@@ -249,7 +233,6 @@ list.addEventListener('click', e => {
 //   const body = document.querySelector('body');
 //   bodyScrollLock.enableBodyScroll(body);
 // };
-
 
 // const closeModal = function () {
 //     const activeModal = document.querySelector('.modal.active');
