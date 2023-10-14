@@ -52,8 +52,7 @@ img {
   --black-bg-cl: #111111;
   --dark-bg-cl: #202024;
 
-
---anim-fast: 300ms ease-in;
+  --anim-fast: 300ms ease-in;
 }
 
 body {
@@ -65,7 +64,23 @@ body {
   letter-spacing: -0.02em;
 }
 
+.overlay {
+  /* Скрываем подложку  */
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  transition: 0.3s all;
+}
+
 .modal {
+  opacity: 0;
+  visibility: hidden;
   box-sizing: border-box;
   border: 2px solid #111111;
   border-radius: 18px;
@@ -76,11 +91,18 @@ body {
   /* min-height: 762px; */
   padding: 40px 24px;
   position: fixed;
-  /* height: 95%; */
+  /* max-height: 95%; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 30;
+  overflow: auto;
+}
+.modal.active,
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+    overflow: auto;
 }
 ::-webkit-scrollbar {
   width: 0;
@@ -121,7 +143,7 @@ body {
 .modal-icon:active,
 .modal-icon:hover,
 .modal-icon:focus {
-    stroke: var(--violet-bg-cl);
+  stroke: var(--violet-bg-cl);
 }
 /* @media only screen and (min-width: 768px) {
   .modal-icon {
@@ -159,6 +181,8 @@ body {
 @media only screen and (min-width: 768px) {
   .modal-picture {
     margin-bottom: 0;
+    /* width: 192px;
+    height: 281px; */
   }
 }
 
@@ -170,6 +194,7 @@ body {
   width: 285px;
   height: 408px;
 }
+
 @media only screen and (min-width: 768px) {
   .modal-picture-content {
     width: 192px;
@@ -227,7 +252,7 @@ body {
   padding: 14px 28px;
   margin-bottom: 0;
   background-color: var(--white-bg-cl);
-transition: color var(--anim-fast), background-color var(--anim-fast);
+  transition: color var(--anim-fast), background-color var(--anim-fast);
 }
 @media only screen and (min-width: 768px) {
   .modal-btn {
@@ -241,6 +266,6 @@ transition: color var(--anim-fast), background-color var(--anim-fast);
 .modal-btn:active,
 .modal-btn:hover,
 .modal-btn:focus {
-   background-color: var(--violet-bg-cl);
-   color: var(--white-tx-cl);
+  background-color: var(--violet-bg-cl);
+  color: var(--white-tx-cl);
 }

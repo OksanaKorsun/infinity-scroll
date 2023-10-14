@@ -83,9 +83,12 @@ function markupTopFive(val) {
 topFive();
 
 //---------------------------------------------------------------//
-
+const modal = document.querySelector('.modal');
 const picture = document.querySelector('.js-modal-picture');
 const modalInfo = document.querySelector('.js-modal-info');
+const overlay = document.querySelector('.js-overlay-modal');
+
+const closeBtn = document.querySelector('.js-modal-close');
 // const item = document.querySelector('.item');
 // const image = document.querySelector('#image1');
 
@@ -117,14 +120,17 @@ listOfBookFromCategory.addEventListener('click', e => {
   picture.innerHTML = '';
   modalInfo.innerHTML = '';
   async function forModal() {
+    // modal.style.display = 'block';
     const result = axios.get(`${touchId}`);
     const resultVal = await result.then(data => data.data);
     console.log(resultVal);
     const modalMake = makeModal(resultVal);
+    modal.classList.add('active');
     return modalMake;
   }
-
   forModal();
+  // enableScrollLock();
+  overlay.classList.add('active');
 });
 
 // ============================================================ //
@@ -135,7 +141,7 @@ listOfBookFromCategory.addEventListener('click', e => {
 //   <h3>${val.author}</h3>
 //   <h4>${val.description}</h4>`;
 // }
-//  width="${book_image_width}" height="${book_image_height}"
+
 function makeModal({
   author,
   book_image,
@@ -146,7 +152,7 @@ function makeModal({
   amazon_product_url,
   buy_links,
 }) {
-  const content = `<img class="modal-picture-content" src="${book_image}" alt="${title}" />`;
+  const content = `<img class="modal-picture-content" src="${book_image}" alt="${title}"  width="${book_image_width}" height="${book_image_height}" />`;
   const text = `<h2 class= "modal-title">${title}</h2>
         <h3 class="modal-author">${author}</h3>
         <p class="modal-description">${description}</p>
@@ -178,8 +184,7 @@ function makeModal({
                 height="32"
             /></a>
             </div>`;
-          
-       
+
   picture.insertAdjacentHTML('beforeend', content);
   modalInfo.insertAdjacentHTML('beforeend', text);
 }
@@ -191,6 +196,11 @@ list.addEventListener('click', e => {
   }
 });
 
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+  overlay.classList.remove('active');
+})
 // try todo
 // async function forShopList() {
 
@@ -221,3 +231,49 @@ list.addEventListener('click', e => {
   console.log(nameOfCategory);
   nameOfCategory.classList.toggle('choosen-category');
 });
+// Закриття модалки
+
+// const enableScrollLock = () => {
+//   const body = document.querySelector('body');
+//   bodyScrollLock.disableBodyScroll(body);
+// };
+
+// Функція для видалення блокування прокрутки
+// const disableScrollLock = () => {
+//   const body = document.querySelector('body');
+//   bodyScrollLock.enableBodyScroll(body);
+// };
+
+
+// const closeModal = function () {
+//     const activeModal = document.querySelector('.modal.active');
+//     activeModal.classList.remove('active');
+//     overlay.classList.remove('active');
+//     disableScrollLock(); // Вимикаємо блокування прокрутки
+//   };
+
+//   modalButtons.forEach(function (item) {
+//     item.addEventListener('click', function (e) {
+//       e.preventDefault();
+//       const modalId = this.getAttribute('data-modal');
+//       openModal(modalId);
+//     });
+//   });
+
+//   closeButtons.forEach(function (item) {
+//     item.addEventListener('click', function (e) {
+//       e.preventDefault();
+//       closeModal();
+//     });
+//   });
+
+// document.body.addEventListener('keyup', function (e) {
+//   const key = e.keyCode;
+//   if (key === 27) {
+//     closeModal();
+//   }
+// });
+
+// overlay.addEventListener('click', function () {
+//   closeModal();
+// });
