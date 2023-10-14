@@ -83,6 +83,7 @@ function markupTopFive(val) {
 topFive();
 
 //---------------------------------------------------------------//
+const body = document.querySelector('body');
 const modal = document.querySelector('.modal');
 const picture = document.querySelector('.js-modal-picture');
 const modalInfo = document.querySelector('.js-modal-info');
@@ -131,6 +132,10 @@ listOfBookFromCategory.addEventListener('click', e => {
   forModal();
   // enableScrollLock();
   overlay.classList.add('active');
+  document.body.style.overflow = "hidden";
+//   window.addEventListener('scroll', (e) => {
+//   window.scrollTo(0,0);
+// });
 });
 
 // ============================================================ //
@@ -200,6 +205,7 @@ list.addEventListener('click', e => {
 closeBtn.addEventListener('click', () => {
   modal.classList.remove('active');
   overlay.classList.remove('active');
+  document.body.style.overflow = ""; 
 })
 // try todo
 // async function forShopList() {
