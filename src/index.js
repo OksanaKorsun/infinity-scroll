@@ -84,11 +84,11 @@ function markupTopFive(val) {
 topFive();
 
 //---------------------------------------------------------------//
-const body = document.querySelector('body');
 const modal = document.querySelector('.modal');
 const picture = document.querySelector('.js-modal-picture');
 const modalInfo = document.querySelector('.js-modal-info');
 const overlay = document.querySelector('.js-overlay-modal');
+const addBtn = document.querySelector('js-modal-btn');
 
 const closeBtn = document.querySelector('.js-modal-close');
 const LS_KEY = 'book-inf';
@@ -122,15 +122,6 @@ async function forModal(touchId) {
   modal.classList.add('active');
   return modalMake;
 }
-
-// ============================================================ //
-// function makeModal(val) {
-//   return `<h1>MODAL</h1>
-//   <img src=${val.book_image}>
-//   <h2>${val.title}</h2>
-//   <h3>${val.author}</h3>
-//   <h4>${val.description}</h4>`;
-// }
 
 function makeModal({
   author,
@@ -191,78 +182,12 @@ closeBtn.addEventListener('click', () => {
   overlay.classList.remove('active');
   document.body.style.overflow = '';
 });
-// try todo
-// async function forShopList() {
 
-//   const touch = e.target;
-//   const touchId = touch.dataset.id;
+//на кнопку я повісила слухача і далі тотрібно у функціі прописати логіку з рендерингу сторінки та локал сторідж
 
-//   const result = axios.get(`${touchId}`);
-//   const resultVal = await result.then(data => data.data);
-//   const modalMake = makeModal(resultVal);
-//   modal.innerHTML = modalMake;
+addBtn.addEventListener('click', () => {})
 
-//   console.log(resultVal._id);
 
-//   const bookID = resultVal._id ;
-//   // console.log(bookID);
 
-//   const LSproduct = JSON.parse(localStorage.getItem(LS_KEY)) || []
-//   const IndexOfBook = LSproduct.findIndex(({ _id }) => _id === bookID)
-//   if (IndexOfBook === -1) {
-//     LSproduct.push(resultVal)
-//   }
 
-//   console.log(LSproduct)
-// }
 
-list.addEventListener('click', e => {
-  const nameOfCategory = e.target;
-  console.log(nameOfCategory);
-  nameOfCategory.classList.toggle('choosen-category');
-});
-// Закриття модалки
-
-// const enableScrollLock = () => {
-//   const body = document.querySelector('body');
-//   bodyScrollLock.disableBodyScroll(body);
-// };
-
-// Функція для видалення блокування прокрутки
-// const disableScrollLock = () => {
-//   const body = document.querySelector('body');
-//   bodyScrollLock.enableBodyScroll(body);
-// };
-
-// const closeModal = function () {
-//     const activeModal = document.querySelector('.modal.active');
-//     activeModal.classList.remove('active');
-//     overlay.classList.remove('active');
-//     disableScrollLock(); // Вимикаємо блокування прокрутки
-//   };
-
-//   modalButtons.forEach(function (item) {
-//     item.addEventListener('click', function (e) {
-//       e.preventDefault();
-//       const modalId = this.getAttribute('data-modal');
-//       openModal(modalId);
-//     });
-//   });
-
-//   closeButtons.forEach(function (item) {
-//     item.addEventListener('click', function (e) {
-//       e.preventDefault();
-//       closeModal();
-//     });
-//   });
-
-// document.body.addEventListener('keyup', function (e) {
-//   const key = e.keyCode;
-//   if (key === 27) {
-//     closeModal();
-//   }
-// });
-
-// overlay.addEventListener('click', function () {
-//   closeModal();
-// });
