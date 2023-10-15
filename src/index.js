@@ -96,19 +96,7 @@ const LS_KEY = 'book-inf';
 listOfBookFromCategory.addEventListener('click', e => {
   const touch = e.target.closest('li');
   const touchId = touch.dataset.id;
-  // picture.innerHTML = '';
-  // modalInfo.innerHTML = '';
-  // async function forModal() {
-  //   const result = axios.get(`${touchId}`);
-  //   const resultVal = await result.then(data => data.data);
-  //   console.log(resultVal);
-  //   const modalMake = makeModal(resultVal);
-  //   modal.classList.add('active');
-  //   return modalMake;
-  // }
   forModal(touchId);
-  // overlay.classList.add('active');
-  // document.body.style.overflow = 'hidden';
 });
 
 async function forModal(touchId) {
@@ -144,11 +132,11 @@ function makeModal({
               rel="noopener noreferrer"
               aria-label="Amazon"
             >
-              <img
-                src="./images/modal/amazon.png"
+              <img class="modal-amazon"
+                src="./images/modal/_amazon.png"
                 alt="Amazon"
-                width="62"
-                height="19"
+                // width="62"
+                // height="19"
               />
       
             </a>
@@ -158,11 +146,11 @@ function makeModal({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Book"
-              ><img
-                src="./images/modal/book.png"
+              ><img class="modal-apple"
+                src="./images/modal/_book.png"
                 alt="Book"
-                width="33"
-                height="32"
+                // width="33"
+                // height="32"
             /></a>
             </div>`;
 
@@ -185,7 +173,7 @@ closeBtn.addEventListener('click', () => {
 
 //на кнопку я повісила слухача і далі тотрібно у функціі прописати логіку з рендерингу сторінки та локал сторідж
 
-addBtn.addEventListener('click', () => {})
+// addBtn.addEventListener('click', () => {})
 
 
 

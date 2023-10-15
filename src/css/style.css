@@ -100,9 +100,9 @@ body {
 }
 .modal.active,
 .overlay.active {
-    opacity: 1;
-    visibility: visible;
-    overflow: auto;
+  opacity: 1;
+  visibility: visible;
+  overflow: auto;
 }
 ::-webkit-scrollbar {
   width: 0;
@@ -188,9 +188,6 @@ body {
 
 .modal-picture-content {
   border-radius: 8px;
-  /* padding: 0;
-  margin: 0; */
-  /* object-fit: cover; */
   max-width: 285px;
   max-height: 408px;
 }
@@ -242,6 +239,30 @@ body {
   gap: 20px;
   align-items: center;
 }
+.modal-amazon {
+  filter: grayscale(100%);
+}
+.modal-amazon:hover {
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
+}
+.modal-amazon .dark {
+  filter: brightness(0) invert(1);
+}
+.modal-amazon .dark:hover {
+  filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.35));
+}
+.modal-apple {
+  filter: grayscale(100%);
+}
+.modal-apple:hover {
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
+}
+.modal-apple .dark {
+  filter: grayscale(100%);
+}
+.modal-apple .dark:hover {
+  filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.35));
+}
 .modal-btn {
   height: 46px;
   display: block;
@@ -269,3 +290,4 @@ body {
   background-color: var(--violet-bg-cl);
   color: var(--white-tx-cl);
 }
+
