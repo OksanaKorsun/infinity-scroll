@@ -165,9 +165,9 @@ function makeModal({
                 aria-label="Amazon"
               >
                 <img
-                  class="modal-amazon"
+                  class="modal-book"
                   src="./images/modal/_book.png"
-                  alt="Amazon"
+                  alt="Book"
                   width="62"
                   height="19"
                   loading="lazy"

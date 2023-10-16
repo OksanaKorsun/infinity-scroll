@@ -104,8 +104,23 @@ body {
   visibility: visible;
   overflow: auto;
 }
+.modal .dark {
+  background-color: var(--dark-bg-cl);
+  border: 2px solid var(--white-bg-cl);
+  color: var(--white-tx-cl);
+}
+
+
 ::-webkit-scrollbar {
   width: 0;
+}
+@media only screen and (max-width: 768px) {
+  .modal {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+
+  }
 }
 @media only screen and (min-width: 768px) {
   .modal {
@@ -139,7 +154,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+.modal-icon .dark {
+  stroke: var(--white-bg-cl);
+}
 .modal-icon:active,
 .modal-icon:hover,
 .modal-icon:focus {
@@ -203,6 +220,9 @@ body {
   margin-bottom: 8px;
   font-weight: 600;
 }
+.modal-title .dark {
+  color: var(--white-tx-cl);
+}
 @media only screen and (min-width: 768px) {
   .modal-title {
     font-size: 24px;
@@ -213,7 +233,7 @@ body {
   font-style: italic;
   font-size: 12px;
   color: var(--light-tx-cl);
-  font-weight: 100;
+  font-weight: 300;
   margin-bottom: 14px;
   margin-top: 0;
 }
@@ -227,6 +247,9 @@ body {
   font-size: 14px;
   width: 287px;
   margin-bottom: 14px;
+}
+.modal-description .dark {
+  color: var(--white-tx-cl);
 }
 @media only screen and (min-width: 768px) {
   .modal-description {
@@ -274,6 +297,10 @@ body {
   margin-bottom: 0;
   background-color: var(--white-bg-cl);
   transition: color var(--anim-fast), background-color var(--anim-fast);
+}
+.modal-btn .dark {
+  background-color: var(--black-bg-cl);
+  color: var(--white-tx-cl);
 }
 @media only screen and (min-width: 768px) {
   .modal-btn {
